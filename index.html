@@ -1,252 +1,66 @@
-/**
- * Archival Modernist Design: Warm scholarly aesthetic with modular card-based layout
- * Typography: Crimson Pro (display), Source Sans 3 (body), Fira Code (mono)
- * Colors: Cream background, charcoal text, burnt sienna accents, sage green highlights
- */
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eldad Haber | UBC Professor & Scientific Computing</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+    <style>
+        body { margin-top: 50px; line-height: 1.6; color: #333; }
+        .header { border-bottom: 1px solid #eee; margin-bottom: 30px; padding-bottom: 20px; }
+        .tag { background: #f1f1f1; padding: 2px 8px; border-radius: 4px; font-size: 0.8em; }
+        h1 { margin-bottom: 0; }
+        .subtitle { color: #777; font-style: italic; }
+        section { margin-bottom: 40px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Eldad Haber</h1>
+            <p class="subtitle">Professor & NSERC Industrial Research Chair, University of British Columbia</p>
+            <div>
+                <a href="https://github.com/eldadhaber">GitHub</a> | 
+                <a href="https://scholar.google.com/citations?user=NZmEIS8AAAAJ">Google Scholar</a> |
+                <a href="mailto:ehaber@eoas.ubc.ca">Email</a>
+            </div>
+        </header>
 
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Mail, Phone, MapPin, ExternalLink, BookOpen, Award, Building2 } from "lucide-react";
-
-export default function Home() {
-  const researchAreas = [
-    {
-      title: "Machine Learning & Deep Neural Networks",
-      image: "https://private-us-east-1.manuscdn.com/sessionFile/gmTjrA0zjRElXyK0HvJki6/sandbox/V9sNkU5vJitVxKAvJ1wIb5-img-2_1770163699000_na1fn_cmVzZWFyY2gtbWw.png?x-oss-process=image/resize,w_1920,h_1920/format,webp/quality,q_80&Expires=1798761600&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvZ21UanJBMHpqUkVsWHlLMEh2SmtpNi9zYW5kYm94L1Y5c05rVTV2Sml0VnhLQXZKMXdJYjUtaW1nLTJfMTc3MDE2MzY5OTAwMF9uYTFmbl9jbVZ6WldGeVkyZ3RiV3cucG5nP3gtb3NzLXByb2Nlc3M9aW1hZ2UvcmVzaXplLHdfMTkyMCxoXzE5MjAvZm9ybWF0LHdlYnAvcXVhbGl0eSxxXzgwIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxNzk4NzYxNjAwfX19XX0_&Key-Pair-Id=K2HSFNDJXOU9YS&Signature=XuGwz6Y0FG7Hyh6UKFlxFPHU7SECkrcDRMCKj3jgoimH77xeHNapLsSS5Xp8ckzOq5JnkFn1iE~hp4ma7NEWSqW~LJvhZZr-WU22os~iFqsuttak6T3ijmZt7ZMoYXkMstGOQBYCdp41yAyBk8VlW9rShbfnNNrrnoc42KU8j5ZxOtnOCHn-IWkE-MsacappWGkjcG5KBU8lTMEYS125z5bMOpe1o6MsGnoiolvSgIx3476Rc7l66q8Zxq5AbuysNJePvQtMRoc43932LTrgytrvAD~NivT35WXdWYUa~h5dYOqBQDLFoPZluEvFpXpNlII~f4INPqDkX33z0PK8vg__",
-      description: "Investigating connections between Ordinary and Partial Differential Equations to Deep Neural Networks. DNNs can be studied as time-dependent dynamical systems, enabling more robust and explainable algorithms."
-    },
-    {
-      title: "Computational Electromagnetics",
-      image: "https://private-us-east-1.manuscdn.com/sessionFile/gmTjrA0zjRElXyK0HvJki6/sandbox/V9sNkU5vJitVxKAvJ1wIb5-img-3_1770163697000_na1fn_cmVzZWFyY2gtZWxlY3Ryb21hZ25ldGljcw.png?x-oss-process=image/resize,w_1920,h_1920/format,webp/quality,q_80&Expires=1798761600&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvZ21UanJBMHpqUkVsWHlLMEh2SmtpNi9zYW5kYm94L1Y5c05rVTV2Sml0VnhLQXZKMXdJYjUtaW1nLTNfMTc3MDE2MzY5NzAwMF9uYTFmbl9jbVZ6WldGeVkyZ3RaV3hsWTNSeWIyMWhaMjVsZEdsamN3LnBuZz94LW9zcy1wcm9jZXNzPWltYWdlL3Jlc2l6ZSx3XzE5MjAsaF8xOTIwL2Zvcm1hdCx3ZWJwL3F1YWxpdHkscV84MCIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc5ODc2MTYwMH19fV19&Key-Pair-Id=K2HSFNDJXOU9YS&Signature=u8mTbMbRglylrJzeSfcU79fydPjhPf2nGvc-ueH5h-AIw9IEOfJ5LaQ1KVGOnuLkwQp6jbHiMG6hLqhlcH~jAxHmJPZXpj2Rt4VQrO9cuofxrQAvFVTbeQBr60HYTd9NiVjC4n~zJKWH8~mhLWqAcxn-lhQqn6dhELtGQy2rudjqKatR1cj10HITYX3ujBiyV42u6ZmDHwwshkFY5W4FnigMeVH8bAufQnv4BLJTOKNU5EFpwvqMjBtFDTD72RR6sijYiUaMWGa9OBXd1DaSeG-yFnZd-9fEcaylvRxIsWdDyjrPME9asKitgJYRBJImb3SGlruk3zNx90EzmcOdmQ__",
-      description: "Developing codes for electromagnetic forward and inverse problems in computational geoscience. Research includes large-scale modeling, imaging, and real-time applications in logging while drilling."
-    },
-    {
-      title: "Medical Image Registration",
-      image: "https://private-us-east-1.manuscdn.com/sessionFile/gmTjrA0zjRElXyK0HvJki6/sandbox/V9sNkU5vJitVxKAvJ1wIb5-img-4_1770163698000_na1fn_cmVzZWFyY2gtbWVkaWNhbA.png?x-oss-process=image/resize,w_1920,h_1920/format,webp/quality,q_80&Expires=1798761600&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvZ21UanJBMHpqUkVsWHlLMEh2SmtpNi9zYW5kYm94L1Y5c05rVTV2Sml0VnhLQXZKMXdJYjUtaW1nLTRfMTc3MDE2MzY5ODAwMF9uYTFmbl9jbVZ6WldGeVkyZ3RiV1ZrYVdOaGJBLnBuZz94LW9zcy1wcm9jZXNzPWltYWdlL3Jlc2l6ZSx3XzE5MjAsaF8xOTIwL2Zvcm1hdCx3ZWJwL3F1YWxpdHkscV84MCIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc5ODc2MTYwMH19fV19&Key-Pair-Id=K2HSFNDJXOU9YS&Signature=rQ~hbHjNrEOEzBcgA~PpTmPcnGLzww6ZIVgxhEx7F71zPBAfoe5qUWO-j1YvkCDx37ZDC-jOSuy7ADgKrtnbhaFbRUWuog7a9qraoR3QQQjpNqYKPavy-VO75lZyFcKl9p~4J6FUaVwbIjlGvITwNyzvjQC1WOhoFQehhjK8U3-Opibh5uRk0I54vCdsNLx9nsdu5d8NGx-i1eUxvt3sUSMoxGluxQQ~FMVSoa5B0KQkO0qIp42QHlqITYHjgv8rcuBKC-llOEi6GTmRvFqHaiz3PX-PhS-3VsDzobDgAo8fZYkmQHyJ0xnfR8VG1RLBx6QA-vm5RUzxVC~58tDmeQ__",
-      description: "Working on medical image registration and optimal mass transport. Developed computational techniques for better and faster image registration with applications in medical imaging."
-    }
-  ];
-
-  const topPublications = [
-    { title: "Stable architectures for deep neural networks", year: 2017, citations: 1018 },
-    { title: "Deep neural networks motivated by partial differential equations", year: 2020, citations: 691 },
-    { title: "Joint inversion: a structural approach", year: 1997, citations: 480 },
-    { title: "On optimization techniques for solving nonlinear inverse problems", year: 2000, citations: 451 },
-    { title: "An introduction to deep generative modeling", year: 2021, citations: 434 }
-  ];
-
-  return (
-    <div className="min-h-screen">
-      {/* Hero Section with Background */}
-      <section 
-        className="relative py-24 md:py-32 overflow-hidden"
-        style={{
-          backgroundImage: `url('https://private-us-east-1.manuscdn.com/sessionFile/gmTjrA0zjRElXyK0HvJki6/sandbox/V9sNkU5vJitVxKAvJ1wIb5-img-1_1770163706000_na1fn_aGVyby1iYWNrZ3JvdW5k.png?x-oss-process=image/resize,w_1920,h_1920/format,webp/quality,q_80&Expires=1798761600&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvZ21UanJBMHpqUkVsWHlLMEh2SmtpNi9zYW5kYm94L1Y5c05rVTV2Sml0VnhLQXZKMXdJYjUtaW1nLTFfMTc3MDE2MzcwNjAwMF9uYTFmbl9hR1Z5YnkxaVlXTnJaM0p2ZFc1ay5wbmc~eC1vc3MtcHJvY2Vzcz1pbWFnZS9yZXNpemUsd18xOTIwLGhfMTkyMC9mb3JtYXQsd2VicC9xdWFsaXR5LHFfODAiLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE3OTg3NjE2MDB9fX1dfQ__&Key-Pair-Id=K2HSFNDJXOU9YS&Signature=JkZ5GmvqIfOs2485dAfd-jTGkQ4gwex8uE9XNidR1BL-5W~ftimB6DW4sdt8DvWV1PKr-pxfnzgAVrRwt6ntBZ3svoxbT1HZIC6o4RXHMBQ2y9GO2jpKL~N1gPUz1dyWZQxXJhMgImW6QJFnjpd6PP3HC57tBBhG3u9buxEqHD-FyUdaCPjHshsSe6fQ6F-bZfyV5P8J4H8UQhjHwVxXA~HKeh-R2WYSJdVakXSqpS~hemSwzUusNf4BdyVjgGOQkwj892QEAtwjdYjKTYwgeyU2cP5haw4h5ap2gbzKzgr-vluFnvsWesx--HH4FVZjIVca5Nlhj2euU6H0mtR5VA__')`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center'
-        }}
-      >
-        <div className="absolute inset-0 bg-background/60 backdrop-blur-sm"></div>
-        <div className="container relative z-10">
-          <div className="max-w-3xl">
-            <h1 className="text-5xl md:text-7xl font-bold mb-4 text-foreground">
-              Eldad Haber
-            </h1>
-            <p className="text-xl md:text-2xl text-foreground/90 mb-6 font-medium">
-              Computational Science and Engineering
+        <section id="about">
+            <h3>About</h3>
+            <p>
+                I am a Professor at UBC specializing in computational inverse problems, machine learning, and geosciences. 
+                My work focuses on the development of stable numerical methods for deep learning, often motivated by 
+                Partial Differential Equations (PDEs) and dynamical systems.
             </p>
-            <div className="flex flex-wrap gap-3 mb-8">
-              <Badge variant="secondary" className="text-base px-4 py-2">
-                Professor, UBC
-              </Badge>
-              <Badge variant="secondary" className="text-base px-4 py-2">
-                NSERC Industrial Research Chair
-              </Badge>
-              <Badge variant="secondary" className="text-base px-4 py-2">
-                SIAM Fellow
-              </Badge>
-            </div>
-            <div className="flex flex-col gap-3 text-foreground/80">
-              <a href="mailto:ehaber@eoas.ubc.ca" className="flex items-center gap-2 hover:text-primary transition-colors">
-                <Mail className="w-5 h-5" />
-                <span>ehaber@eoas.ubc.ca</span>
-              </a>
-              <a href="tel:+16048224525" className="flex items-center gap-2 hover:text-primary transition-colors">
-                <Phone className="w-5 h-5" />
-                <span>(604) 822-4525</span>
-              </a>
-              <div className="flex items-center gap-2">
-                <MapPin className="w-5 h-5" />
-                <span>ESB 5192, University of British Columbia</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+            <p>
+                I was named a <strong>SIAM Fellow</strong> in 2022 and hold a U.S. Department of Energy Career Award. 
+                Beyond academia, I have co-founded several technology startups, including <em>Computational Geosciences Inc.</em> 
+                and <em>Xtract.ai</em>.
+            </p>
+        </section>
 
-      {/* About Section */}
-      <section className="py-16 md:py-24">
-        <div className="container">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-4xl md:text-5xl font-bold mb-8 text-foreground">About</h2>
-            <Card className="shadow-lg">
-              <CardContent className="p-8 md:p-10">
-                <p className="text-lg leading-relaxed mb-6">
-                  Eldad Haber is a scientist and NSERC Industrial Research Chair at the University of British Columbia. He works in the field of computational inverse problems with applications in machine learning, geosciences, and medical imaging. Over the last 20 years, Eldad has written various commercial software packages that have been widely adopted by industry.
-                </p>
-                <p className="text-lg leading-relaxed mb-6">
-                  Eldad has written or co-authored over 150 peer-reviewed publications on computational problems and is a U.S. Department of Energy Career Award recipient. After completing his Ph.D., he spent several years as a research scientist with Schlumberger and nine years at Emory University in Atlanta at the Department of Mathematics and Computer Science.
-                </p>
-                <p className="text-lg leading-relaxed">
-                  In 2011, Eldad co-founded Computational Geosciences Inc., and in 2017 he co-founded Xtract.ai. In 2022, Eldad was awarded a SIAM Fellow for his work on computational inverse problems.
-                </p>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
+        <section id="research">
+            <h3>Research Interests</h3>
+            <ul>
+                <li><strong>Machine Learning:</strong> Reversible architectures, PDE-GCNs, and stable DNNs.</li>
+                <li><strong>Geophysics:</strong> 3D electromagnetic problems, resistivity inversion, and mineral mapping.</li>
+                <li><strong>Inverse Problems:</strong> Large-scale optimization and parameter estimation.</li>
+            </ul>
+        </section>
 
-      {/* Research Metrics */}
-      <section className="py-16 md:py-24 bg-muted/30">
-        <div className="container">
-          <h2 className="text-4xl md:text-5xl font-bold mb-12 text-center text-foreground">Research Impact</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            <Card className="shadow-lg text-center">
-              <CardContent className="p-8">
-                <div className="flex items-center justify-center mb-4">
-                  <BookOpen className="w-10 h-10 text-primary" />
-                </div>
-                <div className="text-5xl font-bold text-primary mb-2">13,421</div>
-                <div className="text-lg text-muted-foreground">Total Citations</div>
-                <div className="text-sm text-muted-foreground mt-2">6,073 since 2021</div>
-              </CardContent>
-            </Card>
-            <Card className="shadow-lg text-center">
-              <CardContent className="p-8">
-                <div className="flex items-center justify-center mb-4">
-                  <Award className="w-10 h-10 text-primary" />
-                </div>
-                <div className="text-5xl font-bold text-primary mb-2">60</div>
-                <div className="text-lg text-muted-foreground">h-index</div>
-                <div className="text-sm text-muted-foreground mt-2">37 since 2021</div>
-              </CardContent>
-            </Card>
-            <Card className="shadow-lg text-center">
-              <CardContent className="p-8">
-                <div className="flex items-center justify-center mb-4">
-                  <Building2 className="w-10 h-10 text-primary" />
-                </div>
-                <div className="text-5xl font-bold text-primary mb-2">150+</div>
-                <div className="text-lg text-muted-foreground">Publications</div>
-                <div className="text-sm text-muted-foreground mt-2">Peer-reviewed</div>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
+        <section id="software">
+            <h3>Software & Projects</h3>
+            <ul>
+                <li><strong>CompGeo:</strong> Public repositories for computational geosciences.</li>
+                <li><strong>InvertibleNetworks.jl:</strong> Scalable normalizing flows (collaborative).</li>
+                <li><strong>TANGO:</strong> Graph Neural Dynamics via learned energy flows.</li>
+            </ul>
+        </section>
 
-      {/* Research Areas */}
-      <section className="py-16 md:py-24">
-        <div className="container">
-          <h2 className="text-4xl md:text-5xl font-bold mb-12 text-foreground">Research Areas</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {researchAreas.map((area, index) => (
-              <Card key={index} className="shadow-lg overflow-hidden group hover:shadow-xl transition-shadow">
-                <div className="aspect-square overflow-hidden">
-                  <img 
-                    src={area.image} 
-                    alt={area.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                </div>
-                <CardContent className="p-6">
-                  <h3 className="text-xl font-bold mb-3 text-foreground">{area.title}</h3>
-                  <p className="text-muted-foreground leading-relaxed">{area.description}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Top Publications */}
-      <section className="py-16 md:py-24 bg-muted/30">
-        <div className="container">
-          <div className="max-w-4xl mx-auto">
-            <div className="flex items-center justify-between mb-12">
-              <h2 className="text-4xl md:text-5xl font-bold text-foreground">Top Publications</h2>
-              <a 
-                href="https://scholar.google.com/citations?user=NZmEIS8AAAAJ&hl=en" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 text-primary hover:underline"
-              >
-                <span className="text-sm font-medium">View All</span>
-                <ExternalLink className="w-4 h-4" />
-              </a>
-            </div>
-            <div className="space-y-4">
-              {topPublications.map((pub, index) => (
-                <Card key={index} className="shadow-md hover:shadow-lg transition-shadow">
-                  <CardContent className="p-6">
-                    <div className="flex items-start justify-between gap-4">
-                      <div className="flex-1">
-                        <h3 className="text-lg font-semibold mb-2 text-foreground">{pub.title}</h3>
-                        <div className="flex items-center gap-4 text-sm text-muted-foreground">
-                          <span className="font-mono">{pub.year}</span>
-                          <span>•</span>
-                          <span className="font-medium">{pub.citations.toLocaleString()} citations</span>
-                        </div>
-                      </div>
-                      <Badge variant="outline" className="shrink-0">
-                        #{index + 1}
-                      </Badge>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="py-12 border-t">
-        <div className="container">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-            <div className="text-center md:text-left">
-              <p className="text-lg font-semibold text-foreground">Eldad Haber</p>
-              <p className="text-sm text-muted-foreground">Professor of Mathematics and Geophysics, UBC</p>
-            </div>
-            <div className="flex gap-6">
-              <a 
-                href="https://scholar.google.com/citations?user=NZmEIS8AAAAJ&hl=en" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-sm text-muted-foreground hover:text-primary transition-colors"
-              >
-                Google Scholar
-              </a>
-              <a 
-                href="https://www.eoas.ubc.ca/people/eldadhaber" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-sm text-muted-foreground hover:text-primary transition-colors"
-              >
-                UBC Profile
-              </a>
-              <a 
-                href="https://eldad-haber.webnode.page/" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-sm text-muted-foreground hover:text-primary transition-colors"
-              >
-                Personal Site
-              </a>
-            </div>
-          </div>
-        </div>
-      </footer>
+        <footer>
+            <p><small>&copy; 2026 Eldad Haber. Built with Skeleton CSS.</small></p>
+        </footer>
     </div>
-  );
-}
+</body>
+</html>
